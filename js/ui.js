@@ -42,13 +42,17 @@ class Interface {
     const coinInfo = result[cryptoCoin][coin];
 
     let price = coinInfo.PRICE.toFixed(2);
+    let percent = coinInfo.CHANGEPCTDAY.toFixed(2);
+    let now = new Date (coinInfo.LASTUPDATE * 1000).toLocaleDateString('es');
 
     //build template
     let templateHTML = `
     <div class="card bg-warning">
         <div class="card-body text-light">
             <h2 class="card-title">Resultado:</h2>
-            <p>El Precio de ${coinInfo.FROMSYMBOL} a moneda ${coinInfo.TOSYMBOL} es de : $ ${coinInfo.PRICE}</p>
+            <p>El Precio de ${coinInfo.FROMSYMBOL} a moneda ${coinInfo.TOSYMBOL} es de : $ ${price}</p>
+            <p>Variación último día: % ${percent}</p>
+            <p>Última actualización: ${now}</p>
         </div>
 
     </div>
