@@ -1,5 +1,7 @@
 'use strict';
 
+const ui = new Interface();
+
 //get form
 
 const form = document.querySelector('#formulario');
@@ -17,7 +19,7 @@ form.addEventListener('submit', (e) => {
     cryptoCoinSelect.options[cryptoCoinSelect.selectedIndex].value;
 
   if (coinSelected === '' || cryptoCoinSelected === '') {
-    console.log('selecciona algo');
+    ui.showMsj('Ambos campos son obligatorios', 'alert bg-danger text-center');
   } else {
     console.log('todo bien');
   }
