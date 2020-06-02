@@ -30,5 +30,4 @@ const formValidate = (e) => {
   }
 };
 
-
 form.addEventListener('submit', formValidate);

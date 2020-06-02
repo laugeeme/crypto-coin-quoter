@@ -37,13 +37,17 @@ class Interface {
 
   //print result of quoter
   showResult(result, coin, cryptoCoin) {
-
+    //hide result before
+    const resultBefore = document.querySelector('#resultado > div');
+    if (resultBefore) {
+      resultBefore.remove();
+    }
 
     const coinInfo = result[cryptoCoin][coin];
 
     let price = coinInfo.PRICE.toFixed(2);
     let percent = coinInfo.CHANGEPCTDAY.toFixed(2);
-    let now = new Date (coinInfo.LASTUPDATE * 1000).toLocaleDateString('es');
+    let now = new Date(coinInfo.LASTUPDATE * 1000).toLocaleDateString('es');
 
     //build template
     let templateHTML = `
@@ -57,7 +61,18 @@ class Interface {
 
     </div>
     `;
-    //show result
-    document.querySelector('#resultado').innerHTML = templateHTML;
+
+    this.showHideSpinner('block');
+
+    setTimeout(() => {
+      //show result
+      document.querySelector('#resultado').innerHTML = templateHTML;
+      this.showHideSpinner('none');
+    }, 3000);
+  }
+
+  showHideSpinner(show) {
+    const spinner = document.querySelector('.contenido-spinner');
+    spinner.style.display = show;
   }
 }
